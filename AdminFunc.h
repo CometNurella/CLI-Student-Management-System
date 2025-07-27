@@ -64,15 +64,12 @@ void Admin_Function() {
 }
 
 //Functions for Admin_Function below
-void ReadAndCheckFile() {
+void CheckFileReadiness() {
     ifstream in_file {"data.csv"};
     if (!in_file.is_open()) {
         cerr << "FAILED TO OPEN CSV FILE" << endl;
         return;
     } else {
-        // while (!in_file.eof()) {
-
-        // }
         cout << "CSV FILE OPENED SUCCESSFULLY" << endl;
     }
 }
