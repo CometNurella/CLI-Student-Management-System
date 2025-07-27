@@ -17,6 +17,8 @@ void ViewTable();
 // void ReturnToMainMenu();
 // void Exit();
 
+void ReadAndCheckFile();
+
 void AdminMenu() {
     cout << "\n\t\t|  Logged in as admin  |\n\n";
     cout << "\n\t\t1. Add student details\n";
@@ -62,6 +64,21 @@ void Admin_Function() {
 }
 
 //Functions for Admin_Function below
+void ReadAndCheckFile() {
+    ifstream in_file {"data.csv"};
+    if (!in_file.is_open()) {
+        cerr << "FAILED TO OPEN CSV FILE" << endl;
+        return;
+    } else {
+        // while (!in_file.eof()) {
+
+        // }
+        cout << "CSV FILE OPENED SUCCESSFULLY" << endl;
+    }
+}
+
+
+
 
 void ViewTable() {
     auto TableHeader = [] () {cout << "\n\t\t\t\t|Student Record|\n\n" << "\n------------------------------------------------------------------------------------------\n\n\n";};
@@ -70,6 +87,7 @@ void ViewTable() {
     TableHeader();
     TableFooter();
 
+    ReadAndCheckFile();
 
 }
 
