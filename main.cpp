@@ -1,13 +1,8 @@
 #include<stdio.h>
 #include<iostream>
-#include<sstream>
-#include<fstream>
-#include<string>
-#include<iomanip>
-#include<algorithm>
-#include<deque>
 
-#include<AdminFunc.h>
+
+#include "AdminFunc.h"
 using namespace std;
 
 void MainMenu() {
@@ -15,7 +10,7 @@ void MainMenu() {
     cout << "\n\t\t1. Admin\n";
     cout << "\n\t\t2. Student\n";
     cout << "\n\t\t3. Exit\n";
-    cout << "\n\n\t\tEnter your choice : ";
+    cout << "\n\n\t\tEnter choice : ";
 
 }
 
@@ -32,11 +27,10 @@ void MainMenu() {
 
 int main() {
     // cout << "Hello World\n";
-    // MainMenu();
 
     bool BooleanFlag {false};
     int choice;
-    // cin >> choice;
+    
 
 
     do {
@@ -44,17 +38,17 @@ int main() {
         cin >> choice;
 
         switch (choice) {
-        case 1: Admin_Function();
-        break;
+            case 1: Admin_Function();
+            break;
 
-        case 2: Student_Function();
-        break; 
+            case 2: Student_Function();
+            break; 
 
-        case 3: BooleanFlag = true;
-            cout << "\n\t\tExit program\n";
-        break;
+            case 3: BooleanFlag = true;
+                cout << "\n\t\tExit program\n";
+            break;
 
-        default: cout << "Invalid option\n";
+            default: cout << "\t\tInvalid option\n";
         }
     } while (!BooleanFlag);
     
