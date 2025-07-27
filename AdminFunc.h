@@ -4,12 +4,11 @@
 #include<sstream>
 #include<fstream>
 #include<string>
-#include<iomanip>
+// #include<iomanip>
 #include<algorithm>
 #include<deque>
 
 using namespace std;
-
 
 void UpdateData();
 void AddStudentDetails();
@@ -60,11 +59,16 @@ void Admin_Function() {
 
         }
     } while (!BooleanFlag);
+}
 
+//Functions for Admin_Function below
 
+void ViewTable() {
+    auto TableHeader = [] () {cout << "\t\t\t\t\t|Student Record|\n\n" << "\n------------------------------------------------------------------------------------------\n\n\n";};
+    auto TableFooter = [] () {cout << "\n\n\n------------------------------------------------------------------------------------------\n";};
 
-
-    
+    TableHeader;
+    TableFooter;
 
 
 }
