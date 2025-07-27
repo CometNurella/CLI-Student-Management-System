@@ -7,7 +7,7 @@
 #include<algorithm>
 #include<deque>
 
-
+#include<AdminFunc.h>
 using namespace std;
 
 void MainMenu() {
@@ -17,24 +17,18 @@ void MainMenu() {
     cout << "\n\t\t3. Exit\n";
     cout << "\n\n\t\tEnter your choice : ";
 
-
-
-    
 }
 
-void Admin_Function() {
-    //This function will have its own header file
-    cout << "\n\tAdmin Function\n";
+// void Admin_Function() {
+//     //This function will have its own header file
+//     cout << "\n\tAdmin Function\n";
+// }
 
 
-}
-
-void Student_Function() {
-    //This will use a function from Admin_Function()
-    cout << "\n\tStudent Function\n";
-
-
-}
+// void Student_Function() {
+//     //This will use a function from Admin_Function()
+//     cout << "\n\tStudent Function\n";
+// }
 
 int main() {
     // cout << "Hello World\n";
