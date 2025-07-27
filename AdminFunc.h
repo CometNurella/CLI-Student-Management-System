@@ -67,10 +67,10 @@ void Admin_Function() {
 void CheckFileReadiness() {
     ifstream in_file {"data.csv"};
     if (!in_file.is_open()) {
-        cerr << "FAILED TO OPEN CSV FILE" << endl;
+        cerr << "\tFAILED TO OPEN CSV FILE\n" << endl;
         return;
     } else {
-        cout << "CSV FILE OPENED SUCCESSFULLY" << endl;
+        cout << "\tCSV FILE OPENED SUCCESSFULLY\n" << endl;
     }
 }
 
@@ -84,7 +84,7 @@ void ViewTable() {
     TableHeader();
     TableFooter();
 
-    ReadAndCheckFile();
+    CheckFileReadiness();
 
 }
 
