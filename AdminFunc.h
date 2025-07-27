@@ -10,15 +10,15 @@
 
 using namespace std;
 
-void UpdateData();
-void AddStudentDetails();
-void DeleteStudent();
+// void UpdateData();
+// void AddStudentDetails();
+// void DeleteStudent();
 void ViewTable();
-void ReturnToMainMenu();
-void Exit();
+// void ReturnToMainMenu();
+// void Exit();
 
 void AdminMenu() {
-    cout << "\n\t\t|  Logged in as admin  |\n";
+    cout << "\n\t\t|  Logged in as admin  |\n\n";
     cout << "\n\t\t1. Add student details\n";
     cout << "\n\t\t2. Delete student\n";
     cout << "\n\t\t3. View table\n";
@@ -39,17 +39,17 @@ void Admin_Function() {
         cin >> choice;
 
         switch (choice) {
-            case 1: AddStudentDetails();
-            break;
+            // case 1: AddStudentDetails();
+            // break;
 
-            case 2: DeleteStudent();
-            break;
+            // case 2: DeleteStudent();
+            // break;
 
             case 3: ViewTable();
             break;
 
-            case 4: ReturnToMainMenu();
-            break;
+            // case 4: ReturnToMainMenu();
+            // break;
 
             case 5: BooleanFlag = true;
                 cout << "\n\t\tExit Admin Menu\n";   
@@ -64,11 +64,11 @@ void Admin_Function() {
 //Functions for Admin_Function below
 
 void ViewTable() {
-    auto TableHeader = [] () {cout << "\t\t\t\t\t|Student Record|\n\n" << "\n------------------------------------------------------------------------------------------\n\n\n";};
+    auto TableHeader = [] () {cout << "\n\t\t\t\t|Student Record|\n\n" << "\n------------------------------------------------------------------------------------------\n\n\n";};
     auto TableFooter = [] () {cout << "\n\n\n------------------------------------------------------------------------------------------\n";};
 
-    TableHeader;
-    TableFooter;
+    TableHeader();
+    TableFooter();
 
 
 }

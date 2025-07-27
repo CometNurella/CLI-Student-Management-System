@@ -6,7 +6,7 @@
 using namespace std;
 
 void MainMenu() {
-    cout << "\n\t\tLogin as :\n";
+    cout << "\n\t\tLogin as :\n\n";
     cout << "\n\t\t1. Admin\n";
     cout << "\n\t\t2. Student\n";
     cout << "\n\t\t3. Exit\n";
