@@ -15,13 +15,9 @@ void MainMenu() {
 }
 
 int main() {
-    // cout << "Hello World\n";
-
     bool BooleanFlag {false};
     int choice;
     
-
-
     do {
         MainMenu();
         cin >> choice;
@@ -40,6 +36,7 @@ int main() {
             default: cout << "\t\tInvalid option\n";
         }
     } while (!BooleanFlag);
+    
     
 
     return 0;
