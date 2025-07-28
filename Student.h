@@ -6,13 +6,13 @@
 class Student {
     friend std::ostream& operator<<(std::ostream& os, const Student& student) {
         os << student.ID
-           << ", " << student.NAME
-           << ", " << student.COLLEGE
-           << ", " << student.SUBJECT
-           << ", " << student.ATTENDANCE
-           << ", " << student.PHYSICS
-           << ", " << student.CHEMISTRY
-           << ", " << student.MATHS;
+           << "\t" << student.NAME
+           << "\t\t\t" << student.COLLEGE
+           << "\t\t" << student.SUBJECT
+           << "\t\t" << student.ATTENDANCE
+           << "\t\t" << student.PHYSICS
+           << "\t\t" << student.CHEMISTRY
+           << "\t\t" << student.MATHS;
         return os;
     }
 private:
