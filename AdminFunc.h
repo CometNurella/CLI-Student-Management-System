@@ -12,22 +12,9 @@ using namespace std;
 
 template<typename T>
 void display (const set<T> &s) {
-    cout << "[ ";
     for_each(s.begin(), s.end(),    
-        [](T x) {cout << x << " ";});
-    cout << "]" << endl;
+        [](T x) {cout << x << "\n";});
 }
-template<typename T>
-void display (const T &t) {
-    cout << "[ ";
-    for_each(t.begin(), t.end(),    
-        [](T x) {cout << x << " ";});
-    cout << "]" << endl;
-}
-
-
-
-
 static set<Student> settest;
 
 
@@ -38,7 +25,7 @@ void ViewTable();
 // void ReturnToMainMenu();
 // void Exit();
 
-void ReadFile();
+
 
 
 void AdminMenu() {
@@ -86,7 +73,42 @@ void Admin_Function() {
 }
 
 //Functions for Admin_Function below
-void ReadFile() {
+
+// void ReadFile() {
+//     ifstream in_file {"data.csv"};
+//     if (!in_file.is_open()) {
+//         cerr << "\tFAILED TO OPEN CSV FILE\n" << endl;
+//         return;
+//     } else {
+//         std::string dNAME, dCOLLEGE, dSUBJECT, dATTENDANCE, dPHYSICS, dCHEMISTRY, dMATHS;
+//         cout << "\tCSV FILE OPENED SUCCESSFULLY\n" << endl;
+//         while (!in_file.eof()) {
+//             getline(in_file, dNAME, ',');
+//             getline(in_file, dCOLLEGE, ',');
+//             getline(in_file, dSUBJECT, ',');
+//             getline(in_file, dATTENDANCE, ',');
+//             getline(in_file, dPHYSICS, ',');
+//             getline(in_file, dCHEMISTRY, ',');
+//             getline(in_file, dMATHS, ',');
+//             // getline(in_file, dNAME, ','); 
+//             settest.emplace(dNAME, dCOLLEGE, dSUBJECT, dATTENDANCE, dPHYSICS, dCHEMISTRY, dMATHS);
+//             display(settest);
+//         }
+//     }
+// }
+
+
+
+
+void ViewTable() {
+    auto TableHeader = [] () {cout << "\n\t\t\t\t\t\t\t\t|Student Record|\n\n" << "\n--------------------------------------------------------------------------------------------------------------\n\n\n"
+                                   << "ID" << "\t" << "Name" << "\t\t\t" << "College" << "\t\t" << "Subject" << "\t\t"  
+                                   << "Attendance" << "\t\t" << "Physics" << "\t\t" << "Chemistry" << "\t\t" << "Maths" << "\n";};
+
+    auto TableFooter = [] () {cout << "\n\n\n--------------------------------------------------------------------------------------------------------------\n";};
+
+    TableHeader();
+
     ifstream in_file {"data.csv"};
     if (!in_file.is_open()) {
         cerr << "\tFAILED TO OPEN CSV FILE\n" << endl;
@@ -101,26 +123,20 @@ void ReadFile() {
             getline(in_file, dATTENDANCE, ',');
             getline(in_file, dPHYSICS, ',');
             getline(in_file, dCHEMISTRY, ',');
-            getline(in_file, dMATHS, ',');
-            // getline(in_file, dNAME, ',');
-            
+            getline(in_file, dMATHS, '\n');
+            // getline(in_file, dNAME, ','); 
             settest.emplace(dNAME, dCOLLEGE, dSUBJECT, dATTENDANCE, dPHYSICS, dCHEMISTRY, dMATHS);
             display(settest);
+
+
         }
     }
-}
 
 
 
-
-void ViewTable() {
-    auto TableHeader = [] () {cout << "\n\t\t\t\t|Student Record|\n\n" << "\n------------------------------------------------------------------------------------------\n\n\n";};
-    auto TableFooter = [] () {cout << "\n\n\n------------------------------------------------------------------------------------------\n";};
-
-    TableHeader();
     TableFooter();
 
-    ReadFile();
+    
 
 
 
