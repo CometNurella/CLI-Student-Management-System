@@ -1,31 +1,32 @@
-#pragma once
+#ifndef _STUDENT_H_
+#define _STUDENT_H_
 #include <string>
 #include <iostream>
 
 class Student {
     friend std::ostream& operator<<(std::ostream& os, const Student& student) {
-        os << "ID: " << student.ID
-           << ", Name: " << student.NAME
-           << ", College: " << student.COLLEGE
-           << ", Subject: " << student.SUBJECT
-           << ", Attendance: " << student.ATTENDANCE
-           << ", Physics: " << student.PHYSICS
-           << ", Chemistry: " << student.CHEMISTRY
-           << ", Maths: " << student.MATHS;
+        os << student.ID
+           << "," << student.NAME
+           << "," << student.COLLEGE
+           << "," << student.SUBJECT
+           << "," << student.ATTENDANCE
+           << "," << student.PHYSICS
+           << "," << student.CHEMISTRY
+           << "," << student.MATHS;
         return os;
     }
 private:
-    static int nextID;
+    // static int nextID;
     int ID;
     std::string NAME{"-"}, COLLEGE{"-"}, SUBJECT{"-"};
     int ATTENDANCE{0}, PHYSICS{0}, CHEMISTRY{0}, MATHS{0};
 public:
     Student()
-        : ID(nextID++) {}
+        : ID{0} {}
 
     Student(std::string name, std::string college, std::string subject,
             int attendance, int physics, int chemistry, int maths)
-        : ID(nextID++), NAME{std::move(name)}, COLLEGE{std::move(college)}, SUBJECT{std::move(subject)},
+        : ID{0}, NAME{std::move(name)}, COLLEGE{std::move(college)}, SUBJECT{std::move(subject)},
           ATTENDANCE{attendance}, PHYSICS{physics}, CHEMISTRY{chemistry}, MATHS{maths} {}
 
     ~Student() = default;
@@ -49,3 +50,6 @@ public:
 };
 
 // Definition of static member
+   
+
+#endif // _STUDENT_H_
