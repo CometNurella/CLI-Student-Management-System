@@ -37,7 +37,7 @@ public:
         return this->ID == rhs.ID;
     }
 
-    // Getters 
+    // Getters which I have no idea why I would use lol
     const std::string& getID() const { return ID; }
     const std::string& getName() const { return NAME; }
     const std::string& getCollege() const { return COLLEGE; }
