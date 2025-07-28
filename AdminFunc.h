@@ -4,18 +4,18 @@
 #include<sstream>
 #include<fstream>
 #include<string>
-// #include<iomanip>
+#include<limits>
 #include<algorithm>
-#include<set>
+#include<list>
 #include"Student.h"
 using namespace std;
 
 template<typename T>
-void display (const set<T> &s) {
+void display (const list<T> &s) {
     for_each(s.begin(), s.end(),    
         [](T x) {cout << x << "\n";});
 }
-static set<Student> settest;
+static list<Student> list_test;
 
 
 // void UpdateData();
@@ -48,6 +48,7 @@ void Admin_Function() {
     do {
         AdminMenu();
         cin >> choice;
+        cin.ignore(numeric_limits<streamsize>::max(),'\n');
 
         switch (choice) {
             case 1: AddStudentDetails();
@@ -74,8 +75,40 @@ void Admin_Function() {
 //Functions for Admin_Function below
 
 void AddStudentDetails() {
+    ofstream out_file {"data.csv", ios::app};
+    if (!out_file.is_open()) {
+        cerr << "\tFAILED TO OPEN CSV file\n" << endl;
+        return;
+    } else {
+        cout << "\n\t|Enter data|\n";
+        string name, college, subject, attendance, physics, chemistry, maths;
+        // string moreData;
 
-    
+        cout << "\nEnter Name : ";
+        getline(cin, name);
+        cout << "\nEnter College : ";
+        getline(cin, college);
+        cout << "\nEnter Subject : ";
+        getline(cin, subject);
+        cout << "\nEnter Attendance : ";
+        getline(cin, attendance);
+        cout << "\nEnter Marks for Physics : ";
+        getline(cin, physics);
+        cout << "\nEnter Marks for Chemistry : ";
+        getline(cin, chemistry);
+        cout << "\nEnter Marks for Maths : ";
+        getline(cin, maths);
+
+        list_test.emplace_back(name, college, subject, attendance, physics, chemistry, maths);
+
+        stringstream ss;
+        ss << name << "," << college << "," << subject << "," << attendance << ","
+           << physics << "," << chemistry << "," << maths;
+        out_file << ss.str() << "\n";
+
+
+        out_file.close();
+    }
 }
 
 
@@ -87,13 +120,14 @@ void ViewTable() {
     auto TableFooter = [] () {cout << "\n\n\n----------------------------------------------------------------------------------------------------------------------\n";};
 
     TableHeader();
+    list<Student> display_list;
     ifstream in_file {"data.csv"};
     if (!in_file.is_open()) {
-        cerr << "\tFAILED TO OPEN CSV FILE\n" << endl;
+        cerr << "\tFAILED TO OPEN CSV file\n" << endl;
         return;
     } else {
         std::string dNAME, dCOLLEGE, dSUBJECT, dATTENDANCE, dPHYSICS, dCHEMISTRY, dMATHS;
-        // cout << "\tCSV FILE OPENED SUCCESSFULLY\n" << endl;
+        // cout << "\tCSV out_file OPENED SUCCESSFULLY\n" << endl;
         while (!in_file.eof()) {
             getline(in_file, dNAME, ',');
             getline(in_file, dCOLLEGE, ',');
@@ -102,19 +136,14 @@ void ViewTable() {
             getline(in_file, dPHYSICS, ',');
             getline(in_file, dCHEMISTRY, ',');
             getline(in_file, dMATHS, '\n');
-            // getline(in_file, dNAME, ','); 
-            settest.emplace(dNAME, dCOLLEGE, dSUBJECT, dATTENDANCE, dPHYSICS, dCHEMISTRY, dMATHS);
-            display(settest);
-
-
+            if (!dNAME.empty()) { // Avoid adding empty lines
+                display_list.emplace_back(dNAME, dCOLLEGE, dSUBJECT, dATTENDANCE, dPHYSICS, dCHEMISTRY, dMATHS);
+            }
         }
+        in_file.close();
     }
+    display(display_list);
     TableFooter();
-
-    
-
-
-
 }
 
 bool ReturnToMainMenu(bool &flag) {
@@ -123,8 +152,9 @@ bool ReturnToMainMenu(bool &flag) {
     return flag;
 }
 
-// Note: The function below will terminate the program immediately by calling exit(0).
-// Any code after this call will not be executed.
+// NOTE to self: The function below will terminate the program improperly.
+// I have no idea why Code-Recursion wrote something similar to this
+// because it just looks stupid. I'd rather return to the main menu then exit.
 bool Exit(bool &flag) {
     flag = true;
     cout << "\n\tExit\n";
@@ -136,6 +166,6 @@ bool Exit(bool &flag) {
 
 
 void Student_Function() {
-    //This will use a function from Admin_Function()
-    cout << "\n\tStudent Function\n";
+
 }
+    
