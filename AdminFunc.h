@@ -6,9 +6,30 @@
 #include<string>
 // #include<iomanip>
 #include<algorithm>
-#include<deque>
-
+#include<set>
+#include"Student.h"
 using namespace std;
+
+template<typename T>
+void display (const set<T> &s) {
+    cout << "[ ";
+    for_each(s.begin(), s.end(),    
+        [](T x) {cout << x << " ";});
+    cout << "]" << endl;
+}
+template<typename T>
+void display (const T &t) {
+    cout << "[ ";
+    for_each(t.begin(), t.end(),    
+        [](T x) {cout << x << " ";});
+    cout << "]" << endl;
+}
+
+
+
+
+static set<Student> settest;
+
 
 // void UpdateData();
 // void AddStudentDetails();
@@ -17,7 +38,8 @@ void ViewTable();
 // void ReturnToMainMenu();
 // void Exit();
 
-void ReadAndCheckFile();
+void ReadFile();
+
 
 void AdminMenu() {
     cout << "\n\t\t|  Logged in as admin  |\n\n";
@@ -64,13 +86,27 @@ void Admin_Function() {
 }
 
 //Functions for Admin_Function below
-void CheckFileReadiness() {
+void ReadFile() {
     ifstream in_file {"data.csv"};
     if (!in_file.is_open()) {
         cerr << "\tFAILED TO OPEN CSV FILE\n" << endl;
         return;
     } else {
+        std::string dNAME, dCOLLEGE, dSUBJECT, dATTENDANCE, dPHYSICS, dCHEMISTRY, dMATHS;
         cout << "\tCSV FILE OPENED SUCCESSFULLY\n" << endl;
+        while (!in_file.eof()) {
+            getline(in_file, dNAME, ',');
+            getline(in_file, dCOLLEGE, ',');
+            getline(in_file, dSUBJECT, ',');
+            getline(in_file, dATTENDANCE, ',');
+            getline(in_file, dPHYSICS, ',');
+            getline(in_file, dCHEMISTRY, ',');
+            getline(in_file, dMATHS, ',');
+            // getline(in_file, dNAME, ',');
+            
+            settest.emplace(dNAME, dCOLLEGE, dSUBJECT, dATTENDANCE, dPHYSICS, dCHEMISTRY, dMATHS);
+            display(settest);
+        }
     }
 }
 
@@ -84,7 +120,9 @@ void ViewTable() {
     TableHeader();
     TableFooter();
 
-    CheckFileReadiness();
+    ReadFile();
+
+
 
 }
 
