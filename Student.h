@@ -6,25 +6,25 @@
 class Student {
     friend std::ostream& operator<<(std::ostream& os, const Student& student) {
         os << student.ID
-           << "," << student.NAME
-           << "," << student.COLLEGE
-           << "," << student.SUBJECT
-           << "," << student.ATTENDANCE
-           << "," << student.PHYSICS
-           << "," << student.CHEMISTRY
-           << "," << student.MATHS;
+           << ", " << student.NAME
+           << ", " << student.COLLEGE
+           << ", " << student.SUBJECT
+           << ", " << student.ATTENDANCE
+           << ", " << student.PHYSICS
+           << ", " << student.CHEMISTRY
+           << ", " << student.MATHS;
         return os;
     }
 private:
-    int ID;
+    std::string ID;
     std::string NAME{"-"}, COLLEGE{"-"}, SUBJECT{"-"}, ATTENDANCE{"-"}, PHYSICS{"-"}, CHEMISTRY{"-"}, MATHS{"-"};
 public:
     Student()
-        : ID{0} {}
+        : ID{"DEF"} {}
 
     Student(std::string name, std::string college, std::string subject,
             std::string attendance, std::string physics, std::string chemistry, std::string maths)
-        : ID{0}, NAME{std::move(name)}, COLLEGE{std::move(college)}, SUBJECT{std::move(subject)},
+        : ID{"NONDEF"}, NAME{std::move(name)}, COLLEGE{std::move(college)}, SUBJECT{std::move(subject)},
           ATTENDANCE{std::move(attendance)}, PHYSICS{std::move(physics)}, CHEMISTRY{std::move(chemistry)}, MATHS{std::move(maths)} {}
 
     ~Student() = default;
@@ -36,8 +36,8 @@ public:
         return this->ID == rhs.ID;
     }
 
-    // Getters (optional)
-    int getID() const { return ID; }
+    // Getters 
+    const std::string& getID() const { return ID; }
     const std::string& getName() const { return NAME; }
     const std::string& getCollege() const { return COLLEGE; }
     const std::string& getSubject() const { return SUBJECT; }
