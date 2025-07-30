@@ -8,8 +8,7 @@
 #include<algorithm>
 #include<list>
 #include<memory>
-// #include"Student.h"
-// using namespace std;
+using namespace std;
 
 // void UpdateData();
 void AddStudentDetails();
@@ -35,9 +34,7 @@ void AdminMenu() {
 void Admin_Function() {
     bool BooleanFlag {false};
     int choice;
-    
     // cout << "\n\tAdmin Function\n";
-
     do {
         AdminMenu();
         cin >> choice;
@@ -68,7 +65,6 @@ void Admin_Function() {
 //Functions for Admin_Function below
 
 void AddStudentDetails() {
-    // ofstream out_file {"data.csv", ios::app};
     ofstream out_file {"data.csv", ios::app};
 
     if (!out_file.is_open()) {
@@ -77,7 +73,6 @@ void AddStudentDetails() {
     } else {
         cout << "\n\t|Enter data|\n";
         string name, college, subject, attendance, physics, chemistry, maths;
-        // string moreData;
 
         cout << "\nEnter Name : ";
         getline(cin, name);
@@ -94,13 +89,10 @@ void AddStudentDetails() {
         cout << "\nEnter Marks for Maths : ";
         getline(cin, maths);
 
-        // display_list.emplace_back(name, college, subject, attendance, physics, chemistry, maths);
-
         stringstream ss;
         ss << "\n" << name << "," << college << "," << subject << "," << attendance << ","
            << physics << "," << chemistry << "," << maths;
         out_file << ss.str() << "\n";
-
 
         out_file.close();
     }
@@ -115,8 +107,6 @@ void ViewTable() {
     auto TableFooter = [] () {cout << "\n\n\n----------------------------------------------------------------------------------------------------------------------\n";};
 
     TableHeader();
-    // const list<Student> local_display_list = display_list;
-    // list<Student> local_display_list;
     ifstream in_file {"data.csv"};
     if (!in_file.is_open()) {
         cerr << "\tFAILED TO OPEN CSV file\n" << endl;
@@ -131,7 +121,7 @@ void ViewTable() {
             getline(in_file, dPHYSICS, ',');
             getline(in_file, dCHEMISTRY, ',');
             getline(in_file, dMATHS, '\n');
-            // display_list.emplace_back(dNAME, dCOLLEGE, dSUBJECT, dATTENDANCE, dPHYSICS, dCHEMISTRY, dMATHS);
+
             static int id {1};
             cout << id++ << "\t"
                 << dNAME << "\t\t\t"
@@ -144,7 +134,6 @@ void ViewTable() {
         }
         in_file.close();
     }
-    // display(local_display_list);
     TableFooter();
 }
 
