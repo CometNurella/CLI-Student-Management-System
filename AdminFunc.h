@@ -21,7 +21,7 @@ bool Exit(bool &flag);
 
 
 void AdminMenu() {
-    cout << "\n\t\t|  Logged in as admin  |\n\n";
+    cout << "\n\n\t\t|  Logged in as admin  |\n\n";
     cout << "\n\t\t1. Add student details\n";
     cout << "\n\t\t2. Delete student\n";
     cout << "\n\t\t3. View table\n";
@@ -71,7 +71,7 @@ void AddStudentDetails() {
         cerr << "\tFAILED TO OPEN CSV file\n" << endl;
         return;
     } else {
-        cout << "\n\t|Enter data|\n";
+        cout << "\n\t\t|Enter data|\n";
         string name, college, subject, attendance, physics, chemistry, maths;
 
         cout << "\nEnter Name : ";
@@ -90,10 +90,9 @@ void AddStudentDetails() {
         getline(cin, maths);
 
         stringstream ss;
-        ss << name << "," << college << "," << subject << "," << attendance << ","
-           << physics << "," << chemistry << "," << maths << "\n";
+        ss << "\n" << name << "," << college << "," << subject << "," << attendance << ","
+           << physics << "," << chemistry << "," << maths;
         out_file << ss.str();
-        // out_file << ss.str() << "\n";
 
         out_file.close();
     }
@@ -122,8 +121,7 @@ void ViewTable() {
             getline(in_file, dATTENDANCE, ',');
             getline(in_file, dPHYSICS, ',');
             getline(in_file, dCHEMISTRY, ',');
-            // getline(in_file, dMATHS, '\n');
-            getline(in_file, dMATHS);
+            getline(in_file, dMATHS, '\n');
             countline++;
             // static int id {1};
             cout << countline << "\t"
