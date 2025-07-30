@@ -21,7 +21,8 @@ int main() {
     do {
         MainMenu();
         cin >> choice;
-
+        cin.ignore(numeric_limits<streamsize>::max(),'\n');
+        
         switch (choice) {
             case 1: Admin_Function();
             break;
