@@ -20,8 +20,6 @@ bool ReturnToMainMenu(bool &flag);
 bool Exit(bool &flag);
 
 
-
-
 void AdminMenu() {
     cout << "\n\t\t|  Logged in as admin  |\n\n";
     cout << "\n\t\t1. Add student details\n";
@@ -92,8 +90,8 @@ void AddStudentDetails() {
         getline(cin, maths);
 
         stringstream ss;
-        ss << "\n" << name << "," << college << "," << subject << "," << attendance << ","
-           << physics << "," << chemistry << "," << maths;
+        ss << name << "," << college << "," << subject << "," << attendance << ","
+           << physics << "," << chemistry << "," << maths << "\n";
         out_file << ss.str();
         // out_file << ss.str() << "\n";
 
