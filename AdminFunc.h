@@ -1,3 +1,5 @@
+#ifndef ADMIN_FUNC_H
+#define ADMIN_FUNC_H
 #include<stdio.h>
 #include<stdlib.h>
 #include<iostream>
@@ -92,7 +94,8 @@ void AddStudentDetails() {
         stringstream ss;
         ss << "\n" << name << "," << college << "," << subject << "," << attendance << ","
            << physics << "," << chemistry << "," << maths;
-        out_file << ss.str() << "\n";
+        out_file << ss.str();
+        // out_file << ss.str() << "\n";
 
         out_file.close();
     }
@@ -112,6 +115,7 @@ void ViewTable() {
         cerr << "\tFAILED TO OPEN CSV file\n" << endl;
         return;
     } else {
+        int countline{0};
         std::string dNAME, dCOLLEGE, dSUBJECT, dATTENDANCE, dPHYSICS, dCHEMISTRY, dMATHS;
         // cout << "\tCSV out_file OPENED SUCCESSFULLY\n" << endl;
         while (getline(in_file, dNAME, ',')) {
@@ -120,10 +124,11 @@ void ViewTable() {
             getline(in_file, dATTENDANCE, ',');
             getline(in_file, dPHYSICS, ',');
             getline(in_file, dCHEMISTRY, ',');
-            getline(in_file, dMATHS, '\n');
-
-            static int id {1};
-            cout << id++ << "\t"
+            // getline(in_file, dMATHS, '\n');
+            getline(in_file, dMATHS);
+            countline++;
+            // static int id {1};
+            cout << countline << "\t"
                 << dNAME << "\t\t\t"
                 << dCOLLEGE << "\t\t"
                 << dSUBJECT << "\t\t"
@@ -159,4 +164,5 @@ bool Exit(bool &flag) {
 void Student_Function() {
 
 }
-    
+
+#endif
