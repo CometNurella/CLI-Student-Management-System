@@ -14,7 +14,7 @@ using namespace std;
 
 // void UpdateData();
 void AddStudentDetails();
-// void DeleteStudent();
+void DeleteStudent();
 void ViewTable();
 bool ReturnToMainMenu(bool &flag);
 bool Exit(bool &flag);
@@ -44,8 +44,8 @@ void Admin_Function() {
             case 1: AddStudentDetails();
             break;
 
-            // case 2: DeleteStudent();
-            // break;
+            case 2: DeleteStudent();
+            break;
 
             case 3: ViewTable();
             break;
@@ -98,6 +98,57 @@ void AddStudentDetails() {
     }
 }
 
+bool find_student(const string &student_to_find, const string &word_read) {
+    size_t found = word_read.find(student_to_find);
+    if (found == string::npos)
+        return false;
+    else
+     return true;
+}
+
+void DeleteStudents() {
+    ofstream fout {"datanew.csv", ios::trunc};
+    if (!fout.is_open()) {
+        cerr << "\tFAILED TO OPEN CSV file\n" << endl;
+        return;
+    }
+
+    ifstream fin {"data.csv"};
+    if (!fin.is_open()) {
+        cerr << "\tFAILED TO OPEN CSV file\n" << endl;
+        return;
+    }
+
+    int countline{0};
+    std::string nameDelete;
+    std::string dNAME, dCOLLEGE, dSUBJECT, dATTENDANCE, dPHYSICS, dCHEMISTRY, dMATHS;
+    while (getline(fin, dNAME, ',')) {
+            getline(fin, dCOLLEGE, ',');
+            getline(fin, dSUBJECT, ',');
+            getline(fin, dATTENDANCE, ',');
+            getline(fin, dPHYSICS, ',');
+            getline(fin, dCHEMISTRY, ',');
+            getline(fin, dMATHS, '\n');
+            countline++;
+    }
+    
+    // cout << "Enter student to delete: ";
+    // cin >> nameDelete;
+    // while (in_file >> word_read) {
+    //     ++word_count;
+    //     if (find_word(word_to_find, word_read)) {
+    //         ++match_count;
+    //         cout << word_read << "  ";
+    //     }
+    // }
+
+
+
+    fin.close();
+    fout.close();
+}
+
+
 
 void ViewTable() {
     auto TableHeader = [] () {cout << "\n\t\t\t\t\t\t|Student Record|\n\n" << "\n----------------------------------------------------------------------------------------------------------------------\n\n\n"
@@ -123,7 +174,6 @@ void ViewTable() {
             getline(in_file, dCHEMISTRY, ',');
             getline(in_file, dMATHS, '\n');
             countline++;
-            // static int id {1};
             cout << countline << "\t"
                 << dNAME << "\t\t\t"
                 << dCOLLEGE << "\t\t"
@@ -158,7 +208,7 @@ bool Exit(bool &flag) {
 
 
 void Student_Function() {
-
+    ViewTable();
 }
 
 #endif
