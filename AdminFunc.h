@@ -8,8 +8,7 @@
 #include<string>
 #include<limits>
 #include<algorithm>
-#include<list>
-#include<memory>
+#include<vector>
 using namespace std;
 
 // void UpdateData();
@@ -98,54 +97,50 @@ void AddStudentDetails() {
     }
 }
 
-bool find_student(const string &student_to_find, const string &word_read) {
-    size_t found = word_read.find(student_to_find);
-    if (found == string::npos)
-        return false;
-    else
-     return true;
-}
-
-void DeleteStudents() {
-    ofstream fout {"datanew.csv", ios::trunc};
-    if (!fout.is_open()) {
-        cerr << "\tFAILED TO OPEN CSV file\n" << endl;
-        return;
-    }
-
-    ifstream fin {"data.csv"};
+void DeleteStudent() {
+    ifstream fin("data.csv");
     if (!fin.is_open()) {
-        cerr << "\tFAILED TO OPEN CSV file\n" << endl;
+        cerr << "\tFAILED TO OPEN CSV FILE\n" << endl;
         return;
     }
 
-    int countline{0};
-    std::string nameDelete;
-    std::string dNAME, dCOLLEGE, dSUBJECT, dATTENDANCE, dPHYSICS, dCHEMISTRY, dMATHS;
-    while (getline(fin, dNAME, ',')) {
-            getline(fin, dCOLLEGE, ',');
-            getline(fin, dSUBJECT, ',');
-            getline(fin, dATTENDANCE, ',');
-            getline(fin, dPHYSICS, ',');
-            getline(fin, dCHEMISTRY, ',');
-            getline(fin, dMATHS, '\n');
-            countline++;
+    ofstream fout("datanew.csv", ios::trunc);
+    if (!fout.is_open()) {
+        cerr << "\tFAILED TO OPEN CSV FILE\n" << endl;
+        fout.close();
+        return;
     }
-    
-    // cout << "Enter student to delete: ";
-    // cin >> nameDelete;
-    // while (in_file >> word_read) {
-    //     ++word_count;
-    //     if (find_word(word_to_find, word_read)) {
-    //         ++match_count;
-    //         cout << word_read << "  ";
-    //     }
-    // }
 
+    cout << "\n\t\tEnter student name to delete: ";
+    string nameDelete;
+    getline(cin, nameDelete);
+    string line;
 
+    bool found = false;
+    while (getline(fin, line)) {
+        stringstream ss(line);
+        string name;
+        getline(ss, name, ','); // get the name (first column)
+
+        if (name != nameDelete) {
+            fout << line << "\n";
+        } else {
+            found = true;
+        }
+    }
 
     fin.close();
     fout.close();
+
+    if (found) {
+        // Replace old file with new file
+        remove("data.csv");
+        rename("datanew.csv", "data.csv");
+        cout << "\n\tStudent " << nameDelete << " deleted successfully\n";
+    } else {
+        remove("datanew.csv");
+        cout << "\n\tStudent " << nameDelete << " not found\n";
+    }
 }
 
 
